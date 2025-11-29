@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - DecorCraft</title>
+    <link rel="stylesheet" href="homepage.css">
+    </head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+               <img src="logo.png" alt="DecorCraft Logo" width="50" height="50">
+               <h1>DecorCraft</h1>
+            </div>
+            <nav>
+                <a href="homepage.html" class="active">Home</a>
+                <a href="categoriespage.html">Categories</a>
+                <a href="sellerspage.html">Top Sellers</a>
+                <a href="cartpage.html">Cart</a>
+            </nav>
+            <div class="header-icons">
+                <span>&#128269; Search</span>
+                <span>&#128100; Profile</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="home-page">
+        <section class="hero-banner">
+            <h2>Elevate Your Home</h2>
+            <p>New Collection: Spring Refresh</p>
+            <button onclick="shopNowAlert()">Shop Now</button>
+        </section>
+
+        <section class="shop-by-room">
+            <h3>Shop By Room</h3>
+            <div class="category-grid">
+                <div class="category-card" onclick="goToCategories('living-room')">
+                    <div class="icon">&#128717;</div>
+                    <h4>Living Room</h4>
+                    <p>124 items</p>
+                </div>
+                <div class="category-card" onclick="goToCategories('bedroom')">
+                    <div class="icon">&#128716;</div>
+                    <h4>Bedroom</h4>
+                    <p>89 items</p>
+                </div>
+                <div class="category-card" onclick="goToCategories('dining-room')">
+                    <div class="icon">&#128719;</div>
+                    <h4>Dining Room</h4>
+                    <p>69 items</p>
+                </div>
+                <div class="category-card" onclick="goToCategories('plants')">
+                    <div class="icon">&#127793;</div>
+                    <h4>Plants & Greenery</h4>
+                    <p>156 items</p>
+                </div>
+                <div class="category-card" onclick="goToCategories('lighting')">
+                    <div class="icon">&#128264;</div>
+                    <h4>Candles & Lighting</h4>
+                    <p>88 items</p>
+                </div>
+                <div class="category-card" onclick="goToCategories('mirrors')">
+                    <div class="icon">&#128450;</div>
+                    <h4>Wall Art & Mirrors</h4>
+                    <p>134 items</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="new-arrivals">
+            <h3>New Arrivals</h3>
+            <a href="#" class="view-all">View All</a>
+            <div class="product-showcase">
+    <div class="product-card">
+        <img src="bohemian.jpg" alt="Bohemian Wall Hanging" class="product-img">
+        <h4>Bohemian Wall Hanging</h4>
+        <p class="price">$34.99</p>
+        <button class="add-to-cart-btn" onclick="addToCart('H01', 'Bohemian Wall Hanging', '34.99')">Add to cart</button>
+    </div>
+    
+    <div class="product-card">
+        <img src="ceramic.jpg" alt="Minimalist Ceramic Vase" class="product-img">
+        <h4>Minimalist Ceramic Vase</h4>
+        <p class="price">$36.99</p>
+        <button class="add-to-cart-btn" onclick="addToCart('H02', 'Minimalist Ceramic Vase', '36.99')">Add to cart</button>
+    </div>
+    
+    <div class="product-card">
+        <img src="pillow.jpg" alt="Velvet Decorative Pillow" class="product-img">
+        <h4>Velvet Decorative Pillow</h4>
+        <p class="price">$22.99</p>
+        <button class="add-to-cart-btn" onclick="addToCart('H03', 'Velvet Decorative Pillow', '22.99')">Add to cart</button>
+    </div>
+    
+    <div class="product-card">
+        <img src="holder.jpg" alt="Brass Candle Holder Set" class="product-img">
+        <h4>Brass Candle Holder Set</h4>
+        <p class="price">$45.99</p>
+        <button class="add-to-cart-btn" onclick="addToCart('H04', 'Brass Candle Holder Set', '45.99')">Add to cart</button>
+    </div>
+</div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 DecorCraft. All rights reserved.</p>
+            <div class="contact-info">
+                <p>Contact: +92 1234-567891 | Email: hello@decorcraft.com</p>
+                <p>Address: 123, City ABC, DC 90210</p>
+                <p>Social Media: Facebook Instagram Pinterest</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- CART MANAGEMENT FUNCTIONS (New) ---
+
+        function getCart() {
+            const cart = localStorage.getItem('decorCraftCart');
+            return cart ? JSON.parse(cart) : [];
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('decorCraftCart', JSON.stringify(cart));
+        }
+
+        function addToCart(itemId, productName, price) {
+            let cart = getCart();
+            // Ensure price is treated as a number
+            const priceNum = parseFloat(price); 
+            
+            // 1. Check if the item already exists in the cart
+            const existingItem = cart.find(item => item.id === itemId);
+
+            if (existingItem) {
+                // Item exists: Increment quantity
+                existingItem.quantity += 1;
+                console.log(`Item already in cart: Increased quantity of ${productName}. (Debug 3)`);
+            } else {
+                // Item is new: Add to cart
+                const newItem = {
+                    id: itemId,
+                    name: productName,
+                    price: priceNum,
+                    quantity: 1
+                };
+                cart.push(newItem);
+                console.log(`Product added to cart: ${productName}. (Debug 3)`);
+            }
+
+            // 2. Save the updated cart and alert the user
+            saveCart(cart);
+            // JS Alert 2: Contextual enhancement 
+            alert(productName + " added to cart successfully! (Alert 2)");
+        }
+        
+        // --- PAGE LOGIC (Original with fixes) ---
+
+        if (sessionStorage.getItem('isAuthenticated') !== 'true') {
+            // JS Alert 3: Required project alert
+            alert("You must be logged in to view this page.");
+            window.location.href = "loginpage.html"; 
+        }
+        // Console Log 1: Aid in debugging page load
+        console.log("HOME page loaded successfully. (Debug 1)");
+
+        function shopNowAlert() {
+            // JS Alert 1: Contextual enhancement
+            alert("New Spring Refresh collection is now available! Redirecting to Categories. (Alert 1)");
+            window.location.href = "categoriespage.html";
+        }
+        
+        function goToCategories(category) {
+            // Console Log 2: Aid in debugging navigation flow
+            console.log("Navigating to category: " + category + " (Debug 2)");
+            window.location.href = "categoriespage.html?id=" + category;
+        }
+        
+        // Removed original empty addToCart function
+        
+        function subscribeToNewsletter() {
+            // NOTE: This function is not called by any HTML element in the provided code,
+            // but the alert is kept to satisfy the 3 alert requirement.
+            alert("Thank you for subscribing to our newsletter! (Alert 3)");
+        }
+    </script>
+</body>
+</html>

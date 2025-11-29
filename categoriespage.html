@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories - DecorCraft</title>
+    <link rel="stylesheet" href="categoriespage.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.png" alt="DecorCraft Logo" width="50" height="50">
+                <h1>DecorCraft</h1>
+            </div>
+            <nav>
+                <a href="homepage.html">Home</a>
+                <a href="categoriespage.html" class="active">Categories</a>
+                <a href="sellerspage.html">Top Sellers</a>
+                <a href="cartpage.html">Cart</a>
+            </nav>
+            <div class="header-icons">
+                <span>&#128269;</span>
+                <span>&#9825;</span>
+                <span>&#128722;</span>
+                <span onclick="logout()" style="cursor:pointer;" title="Logout">&#128100;</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="categories-page">
+        <section class="page-banner">
+            <h2>Living Room Decor</h2>
+        </section>
+
+        <section class="content-wrapper">
+            <aside class="filters-sidebar">
+                <h3>Filters</h3>
+                
+                <div class="filter-group" id="price-filters">
+                    <h4>Price Range</h4>
+                    <div class="radio-option">
+                        <input type="radio" id="price1" name="price" value="under-25">
+                        <label for="price1">Under 25$</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="price2" name="price" value="25-50">
+                        <label for="price2">25$ - 50$</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="price3" name="price" value="50-100">
+                        <label for="price3">50$ - 100$</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="price4" name="price" value="over-100">
+                        <label for="price4">Over 100$</label>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="filter-group" id="category-filters">
+                    <h4>Category</h4>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="cat1" name="cat" value="bedroom">
+                        <label for="cat1">Bedroom Items</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="cat2" name="cat" value="dining">
+                        <label for="cat2">Dining Room Items</label>
+                    </div>
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="cat3" name="cat" value="wall-art">
+                        <label for="cat3">Wall Art</label>
+                    </div>
+                </div>
+
+                <div class="filter-actions">
+                    <button class="apply-btn" onclick="applyFilters()">Apply Filter</button>
+                    <button class="clear-btn" onclick="clearFilters()">Clear All</button>
+                </div>
+            </aside>
+
+            <div class="product-area">
+                <div class="product-header">
+                    <p class="product-count" id="product-count">24 Products</p>
+                    <div class="view-options">
+                        <span>Grid</span>
+                        <input type="checkbox" id="view-toggle">
+                        <label for="view-toggle" class="toggle-label">List &#9776;</label>
+                    </div>
+                </div>
+
+                <div class="product-grid" id="product-list">
+                    <div class="product-card" data-price="55.00" data-category="dining">
+                        <span class="favorite-icon" onclick="toggleFavorite(1)">&#9829;</span>
+                        <img src="ceramic.jpg" alt="Product Item 1" class="product-img">
+                        <p class="product-title">Ceramic Vase</p>
+                        <p class="price">$55.00</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(1, 'Ceramic Vase', '55.00')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="24.99" data-category="bedroom">
+                        <span class="favorite-icon" onclick="toggleFavorite(2)">&#9829;</span>
+                        <img src="pillow.jpg" alt="Product Item 2" class="product-img">
+                        <p class="product-title">Decorative Pillow</p>
+                        <p class="price">$24.99</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(2, 'Decorative Pillow', '24.99')">Add to cart</button>
+                    </div>
+                    <div class="product-card featured" data-price="110.50" data-category="wall-art">
+                        <span class="favorite-icon" onclick="toggleFavorite(3)">&#9829;</span>
+                        <img src="painting.jpg" alt="Product Item 3" class="product-img">
+                        <p class="product-title">Abstract Painting</p>
+                        <p class="price">$110.50</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(3, 'Abstract Painting', '110.50')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="78.99" data-category="dining">
+                        <span class="favorite-icon" onclick="toggleFavorite(4)">&#9829;</span>
+                        <img src="lantern.jpg" alt="Product Item 4" class="product-img">
+                        <p class="product-title">Brass Lantern</p>
+                        <p class="price">$78.99</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(4, 'Brass Lantern', '78.99')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="32.00" data-category="bedroom">
+                        <span class="favorite-icon" onclick="toggleFavorite(5)">&#9829;</span>
+                        <img src="table.jpg" alt="Product Item 5" class="product-img">
+                        <p class="product-title">Bedside Table</p>
+                        <p class="price">$32.00</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(5, 'Bedside Table', '32.00')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="95.75" data-category="wall-art">
+                        <span class="favorite-icon" onclick="toggleFavorite(6)">&#9829;</span>
+                        <img src="print.jpg" alt="Product Item 6" class="product-img">
+                        <p class="product-title">Framed Print</p>
+                        <p class="price">$95.75</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(6, 'Framed Print', '95.75')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="15.00" data-category="bedroom">
+                        <span class="favorite-icon" onclick="toggleFavorite(7)">&#9829;</span>
+                        <img src="candle.jpg" alt="Product Item 7" class="product-img">
+                        <p class="product-title">Scented Candle</p>
+                        <p class="price">$15.00</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(7, 'Scented Candle', '15.00')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="45.99" data-category="dining">
+                        <span class="favorite-icon" onclick="toggleFavorite(8)">&#9829;</span>
+                        <img src="runner.jpg" alt="Product Item 8" class="product-img">
+                        <p class="product-title">Table Runner</p>
+                        <p class="price">$45.99</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(8, 'Table Runner', '45.99')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="150.50" data-category="wall-art">
+                        <span class="favorite-icon" onclick="toggleFavorite(9)">&#9829;</span>
+                        <img src="mirror.jpg" alt="Product Item 9" class="product-img">
+                        <p class="product-title">Large Mirror</p>
+                        <p class="price">$150.50</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(9, 'Large Mirror', '150.50')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="29.99" data-category="bedroom">
+                        <span class="favorite-icon" onclick="toggleFavorite(10)">&#9829;</span>
+                        <img src="frame.jpg" alt="Product Item 10" class="product-img">
+                        <p class="product-title">Photo Frame</p>
+                        <p class="price">$29.99</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(10, 'Photo Frame', '29.99')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="65.00" data-category="dining">
+                        <span class="favorite-icon" onclick="toggleFavorite(11)">&#9829;</span>
+                        <img src="dinner.jpg" alt="Product Item 11" class="product-img">
+                        <p class="product-title">Dinner Set (4pc)</p>
+                        <p class="price">$65.00</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(11, 'Dinner Set (4pc)', '65.00')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="89.75" data-category="wall-art">
+                        <span class="favorite-icon" onclick="toggleFavorite(12)">&#9829;</span>
+                        <img src="clock.jpg" alt="Product Item 12" class="product-img">
+                        <p class="product-title">Decorative Clock</p>
+                        <p class="price">$89.75</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(12, 'Decorative Clock', '89.75')">Add to cart</button>
+                    </div>
+
+                    <div class="product-card" data-price="120.00" data-category="dining">
+                        <span class="favorite-icon" onclick="toggleFavorite(13)">&#9829;</span>
+                        <img src="buffet.jpg" alt="Product Item 13" class="product-img">
+                        <p class="product-title">Small Buffet</p>
+                        <p class="price">$120.00</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(13, 'Small Buffet', '120.00')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="49.99" data-category="bedroom">
+                        <span class="favorite-icon" onclick="toggleFavorite(14)">&#9829;</span>
+                        <img src="blanket.jpg" alt="Product Item 14" class="product-img">
+                        <p class="product-title">Wool Blanket</p>
+                        <p class="price">$49.99</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(14, 'Wool Blanket', '49.99')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="10.50" data-category="wall-art">
+                        <span class="favorite-icon" onclick="toggleFavorite(15)">&#9829;</span>
+                        <img src="pot.jpg" alt="Product Item 15" class="product-img">
+                        <p class="product-title">Mini Plant Pot</p>
+                        <p class="price">$10.50</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(15, 'Mini Plant Pot', '10.50')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="70.99" data-category="bedroom">
+                        <span class="favorite-icon" onclick="toggleFavorite(16)">&#9829;</span>
+                        <img src="box.jpg" alt="Product Item 16" class="product-img">
+                        <p class="product-title">Jewelry Box</p>
+                        <p class="price">$70.99</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(16, 'Jewelry Box', '70.99')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="35.00" data-category="dining">
+                        <span class="favorite-icon" onclick="toggleFavorite(17)">&#9829;</span>
+                        <img src="set.jpg" alt="Product Item 17" class="product-img">
+                        <p class="product-title">Coaster Set</p>
+                        <p class="price">$35.00</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(17, 'Coaster Set', '35.00')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="195.75" data-category="wall-art">
+                        <span class="favorite-icon" onclick="toggleFavorite(18)">&#9829;</span>
+                        <img src="woven.jpg" alt="Product Item 18" class="product-img">
+                        <p class="product-title">Woven Tapestry</p>
+                        <p class="price">$195.75</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(18, 'Woven Tapestry', '195.75')">Add to cart</button>
+                    </div>
+
+                    <div class="product-card" data-price="55.00" data-category="bedroom">
+                        <span class="favorite-icon" onclick="toggleFavorite(19)">&#9829;</span>
+                        <img src="tall.jpg" alt="Product Item 19" class="product-img">
+                        <p class="product-title">Tall Dresser</p>
+                        <p class="price">$55.00</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(19, 'Tall Dresser', '55.00')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="24.99" data-category="dining">
+                        <span class="favorite-icon" onclick="toggleFavorite(20)">&#9829;</span>
+                        <img src="bread.jpg" alt="Product Item 20" class="product-img">
+                        <p class="product-title">Bread Basket</p>
+                        <p class="price">$24.99</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(20, 'Bread Basket', '24.99')">Add to cart</button>
+                    </div>
+                    <div class="product-card featured" data-price="110.50" data-category="wall-art">
+                        <span class="favorite-icon" onclick="toggleFavorite(21)">&#9829;</span>
+                        <img src="canvas.jpg" alt="Product Item 21" class="product-img">
+                        <p class="product-title">Canvas Art</p>
+                        <p class="price">$110.50</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(21, 'Canvas Art', '110.50')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="78.99" data-category="bedroom">
+                        <span class="favorite-icon" onclick="toggleFavorite(22)">&#9829;</span>
+                        <img src="alarm.jpg" alt="Product Item 22" class="product-img">
+                        <p class="product-title">Alarm Clock</p>
+                        <p class="price">$78.99</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(22, 'Alarm Clock', '78.99')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="32.00" data-category="dining">
+                        <span class="favorite-icon" onclick="toggleFavorite(23)">&#9829;</span>
+                        <img src="rings.jpg" alt="Product Item 23" class="product-img">
+                        <p class="product-title">Napkin Rings</p>
+                        <p class="price">$32.00</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(23, 'Napkin Rings', '32.00')">Add to cart</button>
+                    </div>
+                    <div class="product-card" data-price="95.75" data-category="wall-art">
+                        <span class="favorite-icon" onclick="toggleFavorite(24)">&#9829;</span>
+                        <img src="shelf.jpg" alt="Product Item 24" class="product-img">
+                        <p class="product-title">Shelf Display</p>
+                        <p class="price">$95.75</p>
+                        <button class="add-to-cart-btn" onclick="addToCart(24, 'Shelf Display', '95.75')">Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 DecorCraft. All rights reserved. | Crafting Beautiful Spaces</p>
+            <div class="contact-info">
+                <p>Contact: +92 1234-567891 | Email: hello@decorcraft.com</p>
+                <p>Address: 123, City ABC, DC 90210</p>
+                <p>Social Media: Facebook Instagram Pinterest</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const products = document.querySelectorAll('.product-card');
+        const productCountElement = document.getElementById('product-count');
+
+        function getCart() {
+            const cart = localStorage.getItem('decorCraftCart');
+            return cart ? JSON.parse(cart) : [];
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('decorCraftCart', JSON.stringify(cart));
+        }
+        
+        function addToCart(itemId, productName, price) {
+            let cart = getCart();
+          
+            const priceString = String(price).replace(/[^\d.]/g, ''); 
+            const priceNum = parseFloat(priceString); 
+            
+            const existingItem = cart.find(item => item.id === itemId);
+
+            if (existingItem) {
+                existingItem.quantity += 1;
+                console.log(`Increased quantity for ${productName}. New quantity: ${existingItem.quantity}`); 
+                alert(`${productName} quantity updated to ${existingItem.quantity}!`); 
+            } else {
+                const newItem = {
+                    id: itemId,
+                    name: productName,
+                    price: priceNum,
+                    quantity: 1
+                };
+                cart.push(newItem);
+                console.log(`Adding new item: ${productName} priced at $${priceNum.toFixed(2)} to cart.`);
+                alert(productName + " added to cart successfully!");
+            }
+
+            saveCart(cart);
+        }
+
+        if (sessionStorage.getItem('isAuthenticated') !== 'true') {
+            alert("You must be logged in to view categories.");
+            window.location.href = "loginpage.html"; 
+        }
+
+        console.log("CATEGORIES page loaded successfully.");
+
+        function logout() {
+            sessionStorage.removeItem('isAuthenticated');
+            alert("You have been successfully logged out.");
+            window.location.href = "loginpage.html";
+        }
+        
+        function getPriceRange() {
+            const checkedPrice = document.querySelector('input[name="price"]:checked');
+            if (!checkedPrice) return null;
+
+            switch (checkedPrice.value) {
+                case 'under-25': return { min: 0, max: 24.99 };
+                case '25-50': return { min: 25.00, max: 50.00 };
+                case '50-100': return { min: 50.01, max: 100.00 };
+                case 'over-100': return { min: 100.01, max: Infinity };
+                default: return null;
+            }
+        }
+
+        function getSelectedCategories() {
+            return Array.from(document.querySelectorAll('input[name="cat"]:checked'))
+                        .map(input => input.value);
+        }
+
+        function applyFilters() {
+            const priceRange = getPriceRange();
+            const categories = getSelectedCategories();
+            let visibleCount = 0;
+
+            console.log("Applying filters - Price:", priceRange, "Categories:", categories);
+
+            products.forEach(product => {
+                const productPrice = parseFloat(product.dataset.price);
+                const productCategory = product.dataset.category;
+                
+                let passesPriceFilter = true;
+                let passesCategoryFilter = true;
+
+                if (priceRange) {
+                    passesPriceFilter = (productPrice >= priceRange.min && productPrice <= priceRange.max);
+                }
+
+                if (categories.length > 0) {
+                    passesCategoryFilter = categories.includes(productCategory);
+                }
+
+                if (passesPriceFilter && passesCategoryFilter) {
+                    product.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+
+            productCountElement.textContent = `${visibleCount} Products`;
+            alert(`Filters Applied! Showing ${visibleCount} product(s).`);
+        }
+
+        function clearFilters() {
+            document.querySelectorAll('.filters-sidebar input').forEach(input => {
+                input.checked = false;
+            });
+            products.forEach(product => {
+                product.style.display = 'block';
+            });
+            productCountElement.textContent = `${products.length} Products`;
+            console.log("Filters cleared. Showing all products.");
+            alert("All filters cleared. Showing all products.");
+        }
+
+        function toggleFavorite(itemId) {
+            console.log("Toggling favorite for Item: " + itemId);
+        }
+    </script>
+</body>
+</html>

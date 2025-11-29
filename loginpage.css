@@ -1,0 +1,306 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f7f2; 
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+
+header {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.5em;
+    color: #a0522d; 
+    margin: 0 0 0 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #e07a3c;
+}
+
+.header-icons span {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #555;
+}
+
+.login-page {
+    display: flex;
+    flex-grow: 1; 
+    max-width: 1200px;
+    margin: 30px auto; 
+    width: 100%;
+    min-height: 70vh; 
+    background-color: #fff; 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+
+.panel-container {
+    flex: 0 0 40%; 
+    max-width: 400px; 
+    padding: 40px;
+    background-color: #fdfdfd; 
+    display: flex;
+    flex-direction: column;
+}
+
+.welcome-title {
+    font-size: 2em;
+    color: #a0522d; 
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.promo-content {
+    flex-grow: 1; 
+    flex-basis: 60%; 
+    padding: 60px 50px;
+    background-color: #e07a3c; 
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: url('promo-background.jpg'); 
+    background-size: cover;
+    background-position: center;
+}
+
+.promo-content h2 {
+    font-size: 3em;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    padding-left: 60px;
+    margin-top: -50px;
+}
+
+.promo-content p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    font-style: italic;
+    padding-left: 100px;
+}
+
+.promo-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.promo-content li {
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    padding-left: 120px;
+    position: relative;
+}
+
+.promo-content li::before {
+    content: '●'; 
+    color: #fff8e1; 
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    padding-left: 100px;
+}
+
+/* --- Form/Tab Styling --- */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 30px;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 10px 0;
+    margin-right: 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    color: #777;
+    transition: color 0.3s;
+}
+
+.tab-button.active {
+    color: #a0522d;
+    font-weight: bold;
+    border-bottom: 3px solid #a0522d;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.auth-form.hidden {
+    display: none;
+}
+
+.auth-form label {
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.auth-form input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    margin: 10px 0 25px 0;
+}
+
+/* --- CHECKBOX SPACING FIX --- */
+.form-options input[type="checkbox"] {
+    /* Reduce or remove default margin on the right of the checkbox */
+    margin-right: 3px; 
+    /* Ensures the checkbox is vertically centered with the text */
+    vertical-align: middle;
+}
+
+.form-options label[for="remember-me"] {
+    /* Ensures the label is inline with the checkbox */
+    display: inline-block;
+    /* This negative margin helps pull the 'Remember me' text closer to the checkbox,
+       overriding any subtle default browser spacing that may remain. */
+    margin-left: -150px; 
+}
+/* --------------------------- */
+
+.form-options a {
+    color: #a0522d;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-button {
+    background-color: #e07a3c;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 15px;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #cf672c;
+}
+
+.no-account {
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 25px;
+}
+
+.no-account a {
+    color: #a0522d;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer {
+    background-color: #333;
+    color: #ccc;
+    padding: 20px 40px;
+    font-size: 0.9em;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: auto; 
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.contact-info p {
+    margin: 5px 0;
+    text-align: right;
+}
+
+@media (max-width: 800px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    nav {
+        margin: 10px 0;
+    }
+
+    .login-page {
+        flex-direction: column;
+        margin: 20px;
+        min-height: auto;
+    }
+    
+    .panel-container {
+        flex: auto;
+        max-width: 100%;
+        padding: 30px;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+
+    .promo-content {
+        flex: auto;
+        padding: 40px 30px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-info p {
+        text-align: center;
+    }
+}

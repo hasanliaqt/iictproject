@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Sellers - DecorCraft</title>
+    <link rel="stylesheet" href="sellerspage.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.png" alt="DecorCraft Logo" width="50" height="50">
+                <h1>DecorCraft</h1>
+            </div>
+            <nav>
+                <a href="homepage.html">Home</a>
+                <a href="categoriespage.html">Categories</a>
+                <a href="sellerspage.html" class="active">Top Sellers</a>
+                <a href="cartpage.html">Cart</a>
+            </nav>
+            <div class="header-icons">
+                <span>&#128269;</span>
+                <span>&#9825;</span>
+                <span>&#128722;</span>
+                <span onclick="logout()" style="cursor:pointer;" title="Logout">&#128100;</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="top-sellers-page">
+        <section class="banner-section">
+            <div class="banner-content">
+                <span class="fire-icon">&#128293;</span>
+                <h2>Customer Favorites</h2>
+                <p>Most Loved pieces this season</p>
+            </div>
+        </section>
+
+        <section class="product-selection">
+            <div class="filter-pills">
+                <button class="pill active" data-filter="all" onclick="filterProducts('all')">All Categories</button>
+                <button class="pill" data-filter="week" onclick="filterProducts('week')">This Week</button>
+                <button class="pill" data-filter="month" onclick="filterProducts('month')">This Month</button>
+                <button class="pill" data-filter="all-time" onclick="filterProducts('all-time')">All Time</button>
+                <button class="pill right-aligned" data-filter="popular" onclick="filterProducts('popular')">Most Popular</button>
+            </div>
+
+            <div class="top-sellers-grid" id="product-list">
+                <div class="product-card" data-time="week" data-popularity="high" data-price="599.99">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(1)">&#9829;</span>
+                    <img src="sofa.jpg" alt="Velvet Sofa" class="product-image"> 
+                    <p class="product-title">Velvet Sofa</p><p class="price">$599.99</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('1', 'Velvet Sofa', '599.99')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="week" data-popularity="medium" data-price="95.00">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(2)">&#9829;</span>
+                    <img src="dinner.jpg" alt="Minimalist Lamp" class="product-image"> 
+                    <p class="product-title">Dining Table</p><p class="price">$95.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('2', 'Dining Table', '95.00')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="month" data-popularity="high" data-price="150.75">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(3)">&#9829;</span>
+                    <img src="rug.jpg" alt="Geometric Rug" class="product-image"> 
+                    <p class="product-title">Geometric Rug</p><p class="price">$150.75</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('3', 'Geometric Rug', '150.75')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="all-time" data-popularity="medium" data-price="45.50">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(4)">&#9829;</span>
+                    <img src="lantern.jpg" alt="Organic Throw" class="product-image"> 
+                    <p class="product-title">Mininimal Lantern</p><p class="price">$45.50</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('4', 'Mininimal Lantern', '45.50')">ADD TO CART</button>
+                </div>
+                
+                <div class="product-card" data-time="week" data-popularity="high" data-price="19.99">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(5)">&#9829;</span>
+                    <img src="candle.jpg" alt="Scented Candle" class="product-image">
+                    <p class="product-title">Scented Candle</p><p class="price">$19.99</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('5', 'Scented Candle', '19.99')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="month" data-popularity="medium" data-price="75.00">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(6)">&#9829;</span>
+                    <img src="ceramic.jpg" alt="Ceramic Mug Set" class="product-image">
+                    <p class="product-title">Ceramic Mug</p><p class="price">$75.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('6', 'Ceramic Mug', '75.00')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="month" data-popularity="high" data-price="120.00">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(7)">&#9829;</span>
+                    <img src="mirror.jpg" alt="Wall Mirror" class="product-image">
+                    <p class="product-title">Wall Mirror</p><p class="price">$120.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('7', 'Wall Mirror', '120.00')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="all-time" data-popularity="low" data-price="29.99">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(8)">&#9829;</span>
+                    <img src="frame.jpg" alt="Photo Frame" class="product-image">
+                    <p class="product-title">Photo Frame</p><p class="price">$29.99</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('8', 'Photo Frame', '29.99')">ADD TO CART</button>
+                </div>
+
+                <div class="product-card" data-time="week" data-popularity="medium" data-price="50.00">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(9)">&#9829;</span>
+                    <img src="shelf.jpg" alt="Book Shelf" class="product-image">
+                    <p class="product-title">Book Shelf</p><p class="price">$50.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('9', 'Book Shelf', '50.00')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="all-time" data-popularity="high" data-price="180.00">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(10)">&#9829;</span>
+                    <img src="table.jpg" alt="Coffee Table" class="product-image">
+                    <p class="product-title">Coffee Table</p><p class="price">$180.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('10', 'Coffee Table', '180.00')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="month" data-popularity="medium" data-price="35.00">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(11)">&#9829;</span>
+                    <img src="stand.jpg" alt="Plant Stand" class="product-image">
+                    <p class="product-title">Plant Stand</p><p class="price">$35.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('11', 'Plant Stand', '35.00')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="week" data-popularity="low" data-price="88.00">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(12)">&#9829;</span>
+                    <img src="silk.jpg" alt="Silk Curtains" class="product-image">
+                    <p class="product-title">Silk Curtains</p><p class="price">$88.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('12', 'Silk Curtains', '88.00')">ADD TO CART</button>
+                </div>
+
+                <div class="product-card" data-time="all-time" data-popularity="high" data-price="149.00">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(13)">&#9829;</span>
+                    <img src="woven.jpg" alt="Woven Basket" class="product-image">
+                    <p class="product-title">Woven Tapestry</p><p class="price">$149.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('13', 'Woven Tapestry', '149.00')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="month" data-popularity="medium" data-price="11.50">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(14)">&#9829;</span>
+                    <img src="set.jpg" alt="Coaster Set" class="product-image">
+                    <p class="product-title">Coaster Set</p><p class="price">$11.50</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('14', 'Coaster Set', '11.50')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="week" data-popularity="high" data-price="250.00">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(15)">&#9829;</span>
+                    <p class="product-title">Dining Chairs</p><p class="price">$250.00</p>
+                    <img src="chair.jpg" alt="Dining Chairs" class="product-image">
+                    <button class="add-to-cart-btn" onclick="addToCart('15', 'Dining Chairs', '250.00')">ADD TO CART</button>
+                </div>
+                <div class="product-card" data-time="month" data-popularity="low" data-price="60.00">
+                    <span class="tag">TOPSELLER</span><span class="favorite-icon" onclick="toggleFavorite(16)">&#9829;</span>
+                    <img src="drawer.jpg" alt="Side Drawer" class="product-image">
+                    <p class="product-title">Side Drawer</p><p class="price">$60.00</p>
+                    <button class="add-to-cart-btn" onclick="addToCart('16', 'Side Drawer', '60.00')">ADD TO CART</button>
+                </div>
+            </div>
+
+            <div class="pagination" id="pagination-container">
+            </div>
+            
+            <div class="go-to-cart-container">
+                <button class="go-to-cart-btn" onclick="window.location.href='cartpage.html'">Go to Cart</button>
+            </div>
+            
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <p>DecorCraft</p>
+                <p class="tagline">Crafting beautiful spaces with handpicked home decor items that tell your unique story.</p>
+            </div>
+            <div class="contact-info">
+                <p>&copy; 2025 DecorCraft. All rights reserved. | Crafting Beautiful Spaces</p>
+                <p>Contact: +92 1234-567891 | Email: hello@decorcraft.com</p>
+                <p>Social Media: Facebook Instagram Pinterest</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    const productsContainer = document.getElementById('product-list');
+    const allProducts = Array.from(document.querySelectorAll('.product-card'));
+    const paginationContainer = document.getElementById('pagination-container');
+    const productsPerPage = 4;
+    let currentFilteredProducts = allProducts;
+    let currentPage = 1;
+
+    function getCart() {
+        const cart = localStorage.getItem('decorCraftCart');
+        return cart ? JSON.parse(cart) : [];
+    }
+
+    function saveCart(cart) {
+        localStorage.setItem('decorCraftCart', JSON.stringify(cart));
+    }
+
+    if (sessionStorage.getItem('isAuthenticated') !== 'true') {
+        alert("You must be logged in to view Top Sellers.");
+        window.location.href = "loginpage.html"; 
+    }
+
+    console.log("Top Sellers page loaded successfully. Total products found: " + allProducts.length); 
+
+    function logout() {
+        sessionStorage.removeItem('isAuthenticated');
+        alert("You have been successfully logged out."); 
+        window.location.href = "loginpage.html";
+    }
+    
+    function addToCart(itemId, productName, price) {
+        let cart = getCart();
+        const priceNum = parseFloat(price); 
+        
+        const existingItem = cart.find(item => item.id === itemId);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+            console.log(`Increased quantity for ${productName}. New quantity: ${existingItem.quantity}`); 
+            alert(`${productName} quantity updated to ${existingItem.quantity}!`); 
+        } else {
+            const newItem = {
+                id: itemId,
+                name: productName,
+                price: priceNum,
+                quantity: 1
+            };
+            cart.push(newItem);
+            console.log(`Adding new item: ${productName} priced at ${price} to cart.`);
+            alert(productName + " added to cart successfully!"); 
+        }
+
+        saveCart(cart);
+    }
+
+    function toggleFavorite(itemId) {
+        console.log("Toggling favorite for Top Seller Item: " + itemId);
+    }
+    
+    function filterProducts(filterType) {
+        
+        document.querySelectorAll('.pill').forEach(pill => pill.classList.remove('active'));
+        document.querySelector(`.pill[data-filter="${filterType}"]`).classList.add('active');
+
+        currentFilteredProducts = allProducts.filter(product => {
+            const time = product.dataset.time;
+            const popularity = product.dataset.popularity;
+
+            switch (filterType) {
+                case 'all': 
+                    return true;
+                case 'week':
+                case 'month':
+                case 'all-time':
+                    return time === filterType;
+                case 'popular':
+                    return popularity === 'high'; 
+                default: 
+                    return true;
+            }
+        });
+
+        console.log(`Filter applied: ${filterType}. Products matching: ${currentFilteredProducts.length}`);
+
+        currentPage = 1;
+        renderPagination();
+        displayPage(currentPage);
+    }
+
+    function renderPagination() {
+     
+        const totalPages = Math.ceil(currentFilteredProducts.length / productsPerPage);
+        paginationContainer.innerHTML = '';
+
+        if (totalPages <= 1) return;
+
+        for (let i = 1; i <= totalPages; i++) {
+            const button = document.createElement('button');
+            button.classList.add('page-num');
+            button.textContent = i;
+            button.onclick = () => displayPage(i);
+            paginationContainer.appendChild(button);
+        }
+    }
+
+    function displayPage(pageNum) {
+        
+        currentPage = pageNum;
+        const startIndex = (pageNum - 1) * productsPerPage;
+        const endIndex = startIndex + productsPerPage;
+
+        allProducts.forEach(product => {
+            product.style.display = 'none';
+        });
+
+        currentFilteredProducts.forEach((product, index) => {
+            if (index >= startIndex && index < endIndex) {
+                product.style.display = 'block';
+            }
+        });
+
+        document.querySelectorAll('.page-num').forEach(button => {
+            button.classList.remove('active');
+            if (parseInt(button.textContent) === pageNum) {
+                button.classList.add('active');
+            }
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        filterProducts('all'); 
+    });
+
+    </script>
+</body>
+</html>

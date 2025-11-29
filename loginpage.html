@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign up - DecorCraft</title>
+    <link rel="stylesheet" href="loginpage.css">
+    </head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.png" alt="DecorCraft Logo" width="50" height="50">
+                <h1>DecorCraft</h1>
+            </div>
+            <nav>
+                <a href="homepage.html">Home</a>
+                <a href="categoriespage.html">Categories</a>
+                <a href="sellerspage.html">Top Sellers</a>
+                <a href="cartpage.html">Cart</a>
+            </nav>
+            <div class="header-icons">
+                <span>&#128269; Search</span>
+                <span>&#128100; Profile</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="login-page">
+        <div class="panel-container">
+            <h2 class="welcome-title">Welcome to<br><strong>DecorCraft</strong></h2>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="showForm('login')">Login</button>
+                <button class="tab-button" onclick="showForm('signup')">Sign up</button>
+            </div>
+
+            <form id="login-form" class="auth-form" onsubmit="handleLogin(event)">
+                <label for="login-email">Email Address</label>
+                <input type="email" id="login-email" placeholder="Enter your email" required>
+
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" placeholder="Enter your password" required>
+
+                <div class="form-options">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                    <a href="#" onclick="forgotPassword(event)">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="login-button">Login to account</button>
+
+                <p class="no-account">Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a></p>
+            </form>
+
+            <form id="signup-form" class="auth-form hidden" onsubmit="handleSignup(event)">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" placeholder="Enter your full name" required>
+
+                <label for="signup-email">Email Address</label>
+                <input type="email" id="signup-email" placeholder="Enter your email" required>
+
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" placeholder="Create a password" required>
+
+                <label for="signup-phone">Phone Number</label>
+                <input type="tel" id="signup-phone" placeholder="Enter your phone number" required>
+                
+                <button type="submit" class="login-button">Sign up for an account</button>
+
+                <p class="no-account">Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+            </form>
+        </div>
+
+        <div class="promo-content">
+            <h2>Transform Your Space</h2>
+            <p>Discover unique home decor that tells your story</p>
+            <ul>
+                <li>Free shipping on orders above $50</li>
+                <li>Handpicked unique pieces</li>
+                <li>30-day return policy</li>
+                <li>Interior design tips and inspiration</li>
+            </ul>
+            </div>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 DecorCraft. All rights reserved.</p>
+            <div class="contact-info">
+                <p>Contact: +92 1234-567891 | Email: hello@decorcraft.com</p>
+                <p>Address: 123, City ABC, DC 90210</p>
+                <p>Social Media: Facebook Instagram Pinterest</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+     
+        console.log("LOGIN/SIGN-UP page loaded successfully.");
+
+        function showForm(formType) {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            const loginTab = document.querySelector('.tab-button:nth-child(1)');
+            const signupTab = document.querySelector('.tab-button:nth-child(2)');
+
+            if (formType === 'login') {
+                loginForm.classList.remove('hidden');
+                signupForm.classList.add('hidden');
+                loginTab.classList.add('active');
+                signupTab.classList.remove('active');
+            } else if (formType === 'signup') {
+                loginForm.classList.add('hidden');
+                signupForm.classList.remove('hidden');
+                loginTab.classList.remove('active');
+                signupTab.classList.add('active');
+            }
+        }
+        
+        function showLogin() { showForm('login'); }
+        function showSignup() { showForm('signup'); }
+
+        function handleLogin(event) {
+
+            sessionStorage.setItem('isAuthenticated', 'true');
+            event.preventDefault(); 
+            
+            
+            console.log("Attempting to log in...");
+
+           
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            if (email && password) {
+                 
+                alert("Login successful! Redirecting to the Home page.");
+               
+                window.location.href = "homepage.html"; 
+            } else {
+                alert("Please enter both email and password.");
+            }
+        }
+
+        function handleSignup(event) {
+
+            sessionStorage.setItem('isAuthenticated', 'true');
+            event.preventDefault(); 
+             
+            console.log("Attempting to sign up...");
+            
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const phone = document.getElementById('signup-phone').value;
+
+            if (name && email && password && phone) { 
+                alert("Sign-up complete! You are now logged in.");
+              
+                window.location.href = "homepage.html"; 
+            } else {
+                alert("Please fill in all the required fields.");
+            }
+        }
+        
+        function forgotPassword(event) {
+            event.preventDefault();
+             
+            alert("Password reset link sent to your email (if registered).");
+        }
+    </script>
+</body>
+</html>

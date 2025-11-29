@@ -1,0 +1,273 @@
+/* Base Styles for the entire site (Assuming these are also in a global style sheet) */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f3e8; /* Light background */
+    color: #383838;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #fff;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 1.8em;
+    color: #a0522d; /* Sienna/Brown color */
+    margin-left: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #383838;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+.header-icons span {
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 1.2em;
+}
+
+footer {
+    background-color: #383838;
+    color: #f7f3e8;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* --- PAYMENT PAGE SPECIFIC STYLES --- */
+
+.payment-page {
+    max-width: 1200px;
+    margin-top: 50px !important;
+}
+
+h3 {
+    color: #a0522d;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Progress Bar */
+.progress-bar-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto 50px;
+}
+
+.step {
+    color: #a0a0a0;
+    text-align: center;
+    font-weight: bold;
+    flex-grow: 1;
+    position: relative;
+}
+
+.step span {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.step.active {
+    color: #e88d3e; /* Orange for active state */
+}
+
+.step.active span {
+    background-color: #e88d3e;
+}
+
+.step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background-color: #e0e0e0;
+    z-index: -1;
+}
+
+/* Form Styling */
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1em;
+    background-color: #fff;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: #383838;
+}
+
+/* Payment Options Toggle */
+.payment-options {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.payment-option {
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.credit-card {
+    background-color: #e88d3e; /* Orange background */
+    color: white;
+}
+
+.cash-on-delivery {
+    background-color: #fff;
+    color: #e88d3e;
+    border: 2px solid #e88d3e;
+}
+
+.payment-option.active {
+    box-shadow: 0 0 0 3px rgba(232, 141, 62, 0.5); /* Highlight active choice */
+}
+
+.payment-form {
+    display: none;
+}
+
+.payment-form.active {
+    display: block;
+}
+
+/* Place Order Button */
+.place-order-btn {
+    background-color: #a0522d; /* Brown for final action */
+    color: white;
+    border: none;
+    padding: 15px;
+    font-size: 1.2em;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.place-order-btn:hover {
+    background-color: #8c4a28;
+}
+
+
+/* --- ORDER SUMMARY STYLES --- */
+
+.order-summary-card {
+    background-color: #fffaf0; /* Light beige background */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+#summary-items-container {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.summary-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+}
+
+.summary-item img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.summary-item .item-title {
+    font-weight: bold;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.summary-item .item-qty {
+    color: #777;
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.summary-item hr {
+    width: 100%;
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid #e0e0e0;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.summary-value {
+    font-weight: bold;
+}
+
+.total-divider {
+    border: none;
+    border-top: 2px solid #a0522d;
+    margin: 15px 0;
+}
+
+.total-line .total-label {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #a0522d;
+}
+
+.total-line .total-value {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #a0522d;
+}

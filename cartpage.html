@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - DecorCraft</title>
+    <link rel="stylesheet" href="cartpage.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="logo.png" alt="DecorCraft Logo" width="50" height="50">
+                <h1>DecorCraft</h1>
+            </div>
+            <nav>
+                <a href="homepage.html">Home</a>
+                <a href="categoriespage.html">Categories</a>
+                <a href="sellerspage.html">Top Sellers</a>
+                <a href="cartpage.html" class="active">Cart</a>
+            </nav>
+            <div class="header-icons">
+                <span>&#128269;</span>
+                <span>&#9825;</span>
+                <span>&#128722;</span>
+                <span onclick="logout()" style="cursor:pointer;" title="Logout">&#128100;</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="cart-page">
+        <section class="cart-banner">
+            <h2>YOUR SHOPPING CART</h2>
+            <p class="item-count" id="item-count">0 Items</p> 
+        </section>
+
+        <section class="cart-content">
+            <div class="product-list">
+                <div class="list-header">
+                    <p class="product-col">PRODUCT</p>
+                    <p class="price-col">PRICE</p>
+                    <p class="quantity-col">QUANTITY</p>
+                    <p class="item-subtotal-header">SUBTOTAL</p>
+                </div>
+                
+                <div id="cart-items-container">
+                    </div>
+            </div>
+
+            <div class="order-summary-card">
+                <h3>Order Summary</h3>
+                <hr>
+                <div class="summary-line">
+                    <p>Sub Total</p>
+                    <p id="sub-total">$0.00</p>
+                </div>
+                <div class="summary-line">
+                    <p>Discount (10%)</p>
+                    <p id="discount">$-0.00</p>
+                </div>
+                <div class="summary-line">
+                    <p>Shipping</p>
+                    <p id="shipping">$49.00</p>
+                </div>
+                <div class="summary-line">
+                    <p>TAX (10%)</p>
+                    <p id="tax">$0.00</p>
+                </div>
+                <hr>
+                <div class="summary-line total-line">
+                    <p>Total Bill</p>
+                    <p id="total-bill">$0.00</p>
+                </div>
+
+                <button class="checkout-btn" onclick="proceedToPayment()">PROCEED TO CHECKOUT</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <p>DecorCraft</p>
+                <p class="tagline">Crafting beautiful spaces with handpicked home decor items that tell your unique story.</p>
+            </div>
+            <div class="contact-info">
+                <p>&copy; 2025 DecorCraft. All rights reserved. | Crafting Beautiful Spaces</p>
+                <p>Contact: +92 1234-567891 | Email: hello@decorcraft.com</p>
+                <p>Social Media: Facebook Instagram Pinterest</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const cartContainer = document.getElementById('cart-items-container');
+        const SHIPPING_COST = 49; 
+        const DISCOUNT_RATE = 0.10;
+        const TAX_RATE = 0.10;
+
+        function getCart() {
+            const cart = localStorage.getItem('decorCraftCart');
+            return cart ? JSON.parse(cart) : [];
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('decorCraftCart', JSON.stringify(cart));
+        }
+        
+        const currencyFormat = (amount) => `$${Math.max(0, amount).toFixed(2)}`;
+
+        function updateCartItemQuantity(itemId, newQuantity) {
+            let cart = getCart();
+          
+            const item = cart.find(i => i.id == itemId); 
+
+            if (item) {
+                newQuantity = parseInt(newQuantity);
+                
+                if (newQuantity <= 0 || isNaN(newQuantity)) {
+                   
+                    cart = cart.filter(i => i.id != itemId);
+                    alert(`${item.name} has been removed from your cart.`); 
+                    console.log(`Item ${item.name} removed from cart.`); 
+                } else {
+                 
+                    item.quantity = newQuantity;
+                }
+                
+                saveCart(cart);
+                renderCart();
+            }
+        }
+        
+        function renderCart() {
+            const cart = getCart();
+            cartContainer.innerHTML = '';
+            let subTotal = 0;
+            let totalItems = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p style="text-align: center; margin-top: 50px; font-size: 1.2em; color: #a0522d;">Your cart is empty! Start shopping.</p>';
+            }
+
+            cart.forEach(item => {
+                const itemSubtotal = item.price * item.quantity;
+                subTotal += itemSubtotal;
+                totalItems += item.quantity;
+               
+                const itemHtml = `
+                    <div class="cart-item" data-price="${item.price}" data-id="${item.id}">
+                        <div class="item-details">
+                            
+                            <div class="item-info">
+                                <p class="item-title">${item.name}</p>
+                                <div class="star-rating">
+                                    <span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9733;</span><span>&#9734;</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="item-price price-col">${currencyFormat(item.price)}</p>
+                        <div class="item-quantity quantity-col">
+                            <input type="number" value="${item.quantity}" min="0" class="quantity-input" 
+                                onchange="updateCartItemQuantity('${item.id}', this.value)">
+                        </div>
+                        <p class="item-subtotal">${currencyFormat(itemSubtotal)}</p>
+                    </div>
+                `;
+                cartContainer.insertAdjacentHTML('beforeend', itemHtml);
+            });
+
+            calculateOrderSummary(subTotal, totalItems);
+        }
+
+        function calculateOrderSummary(subTotal, totalItems) {
+            const discount = subTotal * DISCOUNT_RATE;
+            const taxableBase = subTotal - discount; 
+            const tax = taxableBase * TAX_RATE; 
+            const totalBill = taxableBase + tax + SHIPPING_COST;
+            
+            const currencyFormat = (amount) => `$${Math.max(0, amount).toFixed(2)}`;
+
+            document.getElementById('item-count').textContent = `${totalItems} Items`;
+            document.getElementById('sub-total').textContent = currencyFormat(subTotal);
+            
+            document.getElementById('discount').textContent = `$-${discount.toFixed(2)}`; 
+            document.getElementById('shipping').textContent = currencyFormat(SHIPPING_COST);
+            document.getElementById('tax').textContent = currencyFormat(tax);
+            document.getElementById('total-bill').textContent = currencyFormat(totalBill);
+            
+            document.querySelector('.checkout-btn').textContent = `PROCEED TO CHECKOUT ${currencyFormat(totalBill)}`;
+
+            console.log(`New Sub Total: ${currencyFormat(subTotal)}. Total Bill: ${currencyFormat(totalBill)}`);
+        }
+        
+        
+        if (sessionStorage.getItem('isAuthenticated') !== 'true') {
+            alert("You must be logged in to view your cart."); 
+            window.location.href = "loginpage.html"; 
+        }
+
+        function logout() {
+            sessionStorage.removeItem('isAuthenticated');
+            alert("You have been successfully logged out."); 
+            window.location.href = "loginpage.html";
+        }
+        
+        function proceedToPayment() {
+        if(getCart().length === 0) {
+            alert("Your cart is empty. Please add items before checking out.");
+            return;
+        }
+        console.log("Navigating to Payment Page."); 
+        alert("Proceeding to payment!"); 
+        
+        window.location.href = "paymentpage.html"; 
+    }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCart();
+        });
+        
+    </script>
+</body>
+</html>
